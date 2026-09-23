@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* ============================================================
+   LexiAI Design System — CSS Custom Properties
+   All color tokens live here. Nothing is hardcoded elsewhere.
+   ============================================================ */
+
+@theme {
+  /* Backgrounds */
+  --color-bg-base:      #0a0a0b;
+  --color-bg-surface:   #111114;
+  --color-bg-elevated:  #18181c;
+  --color-bg-border:    #27272f;
+
+  /* Text */
+  --color-text-primary:   #f0eee8;
+  --color-text-secondary: #9998a0;
+  --color-text-muted:     #55545c;
+
+  /* Accent — legal gold */
+  --color-accent:         #c9a84c;
+  --color-accent-soft:    rgba(201,168,76,0.1);
+  --color-accent-hover:   #dfc06a;
+
+  /* Status */
+  --color-success:        #3ecf8e;
+  --color-warning:        #f5a623;
+  --color-error:          #f03e3e;
+  --color-info:           #5b8dee;
+
+  /* Radii */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ── Global reset & base styles ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar styling ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-bg-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+
+/* ── Typography utilities ────────────────────────────────────── */
+.font-mono { font-family: var(--font-mono); }
+
+/* ── Transitions ─────────────────────────────────────────────── */
+.transition-color { transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease; }
+.transition-transform { transition: transform 200ms ease; }
+
+/* ── Gold pulse animation (pipeline indicator) ───────────────── */
+@keyframes gold-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.animate-gold-pulse { animation: gold-pulse 1.5s ease-in-out infinite; }
+
+/* ── Fade-in for messages ────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 200ms ease forwards; }
+
+/* ── Cursor blink for streaming ──────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink { animation: blink 1s step-end infinite; }
